@@ -1,0 +1,13 @@
+0: [S, Z]
+1: [T, TH, D, DH, DX]
+2: [N, EN, NX]
+3: [M, EM]
+4: [R]
+5: [EL, L]
+6: [CH, JH, SH, V]
+7: [G, K, NG, Q]
+8: [F]
+9: [B, P]
+
+NOP: [HH, W, WH, Y]
+VOWELS: [AA, AE, AH, AO, AW, AX, AXR,AY, EH, ER, EY, IH, IX, IY, OW, OY, UH, UW, UX]

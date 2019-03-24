@@ -6,7 +6,7 @@
     </label>
     <div>
       Show words of type:
-      <label class="match" :class="cat" v-for="cat in categories">
+      <label class="match" :class="cat" v-for="cat in all_categories">
         <input type="checkbox" :value="cat" v-model="enabled_categories" />
         {{ cat }}
       </label>
@@ -15,10 +15,10 @@
       <div class="match-list" v-for="num in input_numbers">
         <div
           class="match"
-          v-for="match in matches(num)"
+          v-for="[match, cat] in matches(num).map(m => [m, categories(m)])"
           @click="bad.unshift(match)"
-          :class="category(match)"
-          v-if="enabled_categories.includes(category(match))"
+          :class="cat"
+          v-if="enabled_categories.some(c => cat[c])"
         >
           {{ match }}
         </div>
@@ -49,7 +49,7 @@ export default {
     return {
       input: "",
       bad: [],
-      categories: ["noun", "verb", "adjective", "other"],
+      all_categories: ["noun", "verb", "adjective", "other"],
       enabled_categories: ["noun", "verb", "adjective"]
     };
   },
@@ -83,15 +83,15 @@ export default {
       );
     },
 
-    category(word) {
+    categories(word) {
       const wordlist = categorized_words;
-      return wordlist.N.includes(word)
-        ? "noun"
-        : wordlist.V.includes(word)
-        ? "verb"
-        : wordlist.A.includes(word)
-        ? "adjective"
-        : "other";
+      let cats = {
+        noun: wordlist.N.includes(word),
+        verb: wordlist.V.includes(word),
+        adjective: wordlist.A.includes(word)
+      };
+      cats.other = [...Object.values(cats)].some(x => x);
+      return cats;
     }
   }
 };
@@ -114,16 +114,17 @@ export default {
   padding: 0.3em;
   cursor: pointer;
 
-  &.noun {
-    background-color: #b95f5f;
+  // reverse order of priority for css
+  &.adjective {
+    background-color: #5fb95f;
   }
 
   &.verb {
     background-color: #5f5fb9;
   }
 
-  &.adjective {
-    background-color: #5fb95f;
+  &.noun {
+    background-color: #b95f5f;
   }
 }
 </style>

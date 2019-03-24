@@ -1,4 +1,8 @@
 {
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build --public-url ./ index.html"
+  },
   "dependencies": {
     "categorized-words": "^1.0.0",
     "pronouncing": "github:aparrish/pronouncingjs",
@@ -7,6 +11,8 @@
   },
   "devDependencies": {
     "@vue/component-compiler-utils": "^2.6.0",
+    "cssnano": "^4.1.10",
+    "parcel": "^1.12.3",
     "sass": "^1.17.3",
     "vue-template-compiler": "^2.6.10"
   }

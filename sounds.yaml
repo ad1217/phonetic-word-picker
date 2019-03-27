@@ -4,9 +4,9 @@
 3: [M, EM]
 4: [R, ER, AXR]
 5: [EL, L]
-6: [CH, JH, SH, V]
+6: [CH, JH, SH]
 7: [G, K, NG, Q]
-8: [F]
+8: [F, V]
 9: [B, P]
 
 NOP: [HH, W, WH, Y]
